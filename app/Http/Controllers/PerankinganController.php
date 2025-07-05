@@ -85,8 +85,8 @@ class PerankinganController extends Controller
 
         foreach ($topPerDusun as $id_alternatif) {
 
-            // Cek apakah sudah diterima sebelumnya
-            if (!PenerimaBantuan::sudahPernahDiterima($id_alternatif, $tahun)) {
+            // Cek apakah sudah disetujui sebelumnya
+            if (!PenerimaBantuan::sudahPernahDisetujui($id_alternatif, $tahun)) {
                 $nilaiSAW = HasilSAW::where('id_alternatif', $id_alternatif)->value('nilai_hasil_saw');
 
                 PenerimaBantuan::create([

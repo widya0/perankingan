@@ -47,14 +47,14 @@ class PenerimaBantuan extends Model
     }
 
 
-    public static function sudahPernahDiterima($id_alternatif, $tahun) {
+    public static function sudahPernahDisetujui($id_alternatif, $tahun) {
         return self::where('id_alternatif', $id_alternatif)
-            ->where('status_penerima', 'Diterima')
+            ->where('status_penerima', 'Disetujui')
             ->where('tahun_seleksi', '>=', $tahun - 5)
             ->exists();
     }
 
-    public static function getTahunDiterima()
+    public static function getTahunDisetujui()
     {
         return self::select('tahun_seleksi')
             ->distinct()
@@ -66,11 +66,11 @@ class PenerimaBantuan extends Model
 
     public static function getJumlahPerTahun()
     {
-        $labels = self::getTahunDiterima()->map(fn($tahun) => (string) $tahun); // pastikan string
+        $labels = self::getTahunDisetujui()->map(fn($tahun) => (string) $tahun); // pastikan string
         $data = [];
         foreach ($labels as $tahun) {
             $data[] = self::where('tahun_seleksi', $tahun)
-                ->where('status_penerima', 'Diterima')
+                ->where('status_penerima', 'Disetujui')
                 ->count();
         }
         return [$labels, $data];
@@ -80,7 +80,7 @@ class PenerimaBantuan extends Model
     {
         return self::select('alternatif.dusun', DB::raw('count(*) as total'))
             ->join('alternatif', 'alternatif.id_alternatif', '=', 'penerima_bantuan.id_alternatif')
-            ->where('status_penerima', 'Diterima')
+            ->where('status_penerima', 'Disetujui')
             ->groupBy('alternatif.dusun')
             ->pluck('total', 'alternatif.dusun');
     }

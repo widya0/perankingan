@@ -18,9 +18,9 @@ class DataCalonController extends Controller
 
         $dusunList = Alternatif::getDusunListAktif();
 
-        // Ambil semua alternatif yang tidak pernah 'Diterima'
+        // Ambil semua alternatif yang tidak pernah 'Disetujui'
         $query = Alternatif::whereDoesntHave('penerimaBantuan', function ($q) {
-            $q->where('status_penerima', 'Diterima');
+            $q->where('status_penerima', 'Disetujui');
         });
 
         $query = Alternatif::filterDusun($query, $filterDusun);

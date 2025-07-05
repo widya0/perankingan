@@ -56,7 +56,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const labels = {!! json_encode($labels ?? ['2022', '2023', '2024', '2025']) !!};
-        const data = {!! json_encode($dataDiterima ?? [0, 0, 0, 0]) !!};
+        const data = {!! json_encode($dataDisetujui ?? [0, 0, 0, 0]) !!};
 
         const ctx = document.getElementById('myChart').getContext('2d');
         const myChart = new Chart(ctx, {

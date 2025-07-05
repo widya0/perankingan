@@ -12,7 +12,7 @@ class HitungSAWHelper
 {
     public static function matriksKeputusan($periode)
     {
-        $daftarSudahDisetujui = PenerimaBantuan::where('status_penerima', 'Diterima')
+        $daftarSudahDisetujui = PenerimaBantuan::where('status_penerima', 'Disetujui')
             ->pluck('id_alternatif')
             ->toArray();
 

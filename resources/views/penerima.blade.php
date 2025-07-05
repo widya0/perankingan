@@ -90,17 +90,11 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="dropdown">
-                                    <button class="badge border-0 dropdown-toggle {{ $data->status_penerima === 'Diterima' ? 'bg-success' : 'bg-warning text-dark' }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="badge border-0 dropdown-toggle {{ $data->status_penerima === 'Disetujui' ? 'bg-success' : 'bg-warning text-dark' }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         {{ $data->status_penerima }}
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
-<!-- <button type="submit" name="status_penerima" value="Diajukan"
-    class="dropdown-item {{ $data->status_penerima === 'Diajukan' ? 'active' : '' }}"
-    onclick="return confirmUbahStatusPenerima({{ $data->id_penerima_bantuan }}, 'Diajukan', '{{ addslashes($data->nama_penerima) }}')">
-    Diajukan
-</button> -->
-
                                             <button type="button" data-status="Diajukan"
                                             onclick='konfirmasiUbahStatus(this, {{ $data->id_penerima_bantuan }}, {!! json_encode($data->alternatif->nama) !!})'    
                                             class="dropdown-item {{ $data->status_penerima === 'Diajukan' ? 'active' : '' }}"
@@ -108,16 +102,10 @@
                                             </button>
                                         </li>
                                         <li>
-<!-- <button type="submit" name="status_penerima" value="Diterima"
-    class="dropdown-item {{ $data->status_penerima === 'Diterima' ? 'active' : '' }}"
-    onclick="return confirmUbahStatusPenerima({{ $data->id_penerima_bantuan }}, 'Diterima', '{{ addslashes($data->nama_penerima) }}')">
-    Diterima
-</button> -->
-
-                                            <button type="button" data-status="Diterima"
+                                            <button type="button" data-status="Disetujui"
                                             onclick='konfirmasiUbahStatus(this, {{ $data->id_penerima_bantuan }}, {!! json_encode($data->alternatif->nama) !!})'   
-                                            class="dropdown-item {{ $data->status_penerima === 'Diterima' ? 'active' : '' }}"
-                                                style="font-size: 16px;">Diterima
+                                            class="dropdown-item {{ $data->status_penerima === 'Disetujui' ? 'active' : '' }}"
+                                                style="font-size: 16px;">Disetujui
                                             </button>
                                         </li>
                                     </ul>
@@ -126,7 +114,7 @@
                             
                             @else
                             <!-- Kalau bukan Admin, tampilkan teks status biasa (tanpa dropdown & form) -->
-                            <span class="badge {{ $data->status_penerima === 'Diterima' ? 'bg-success' : 'bg-warning text-dark' }}">
+                            <span class="badge {{ $data->status_penerima === 'Disetujui' ? 'bg-success' : 'bg-warning text-dark' }}">
                                 {{ $data->status_penerima }}
                             </span>
                             @endif
@@ -149,14 +137,11 @@
 @include('partial.modalkirimdashboard')
 
 <script>
-    // function confirmUbahStatusPenerima(id, status, nama) {
-    //     return confirm('Yakin ingin mengubah status menjadi "' + status + '"?');
-    // }
 function konfirmasiUbahStatus(button, id, nama) {
     const status = button.getAttribute('data-status');
     const pesan = status === 'Diajukan'
         ? 'Data "' + nama + '" akan diubah menjadi DIAJUKAN. Lanjutkan?'
-        : 'Data "' + nama + '" akan diubah menjadi DITERIMA. Lanjutkan?';
+        : 'Data "' + nama + '" akan diubah menjadi DISETUJUI. Lanjutkan?';
 
     Swal.fire({
         title: 'Anda yakin?',

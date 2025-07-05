@@ -62,7 +62,7 @@
                                 @if ($item->status_penerima === 'Diajukan')
                                     <span class="badge bg-warning text-dark">Diajukan</span>
                                 @else
-                                    <span class="badge bg-success">Diterima</span>
+                                    <span class="badge bg-success">Disetujui</span>
                                 @endif
                             </td>
                         </tr>

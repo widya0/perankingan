@@ -50,7 +50,7 @@ class PenerimaController extends Controller
     public function EditStatusPenerima(Request $request, $id)
     {
         $request->validate([
-            'status_penerima' => 'required|in:Diajukan,Diterima',
+            'status_penerima' => 'required|in:Diajukan,Disetujui',
         ]);
 
         $penerima = PenerimaBantuan::findOrFail($id);
